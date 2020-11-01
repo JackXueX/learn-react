@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>属性绑定</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <script type="text/babel">
+    function getSizeImage(imgUrl, size) {
+      return imgUrl + `?param=${size}*${size}`
+    }
+    class App extends React.Component {
+      constructor() {
+        super();
+        this.state = {
+          title: "标题",
+          imgUrl: "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3363295869,2467511306&fm=26&gp=0.jpg",
+          link: "http://www.baidu.com",
+          active: true
+        }
+      }
+      render() {
+        const { title, imgUrl, link, active } = this.state;
+        return (
+          <div>
+            <h2 title={title}>我是标题</h2>
+            {/*可以直接插入属性*/}
+            <img src={imgUrl} alt="" />
+            {/*可以调用函数*/}
+            <img src={getSizeImage(imgUrl, 140)} alt="" />
+             {/*1 绑定普通属性*/}
+            <a href={link} target="blank">百度一下</a>
+            <div className="box title active" id="hello">我是div元素</div> 
+            <label htmlFor=""></label>
+            {/*2 绑定class*/}
+            <div className={"box title " + (active ? "active" : "")}>绑定class值</div>
+            {/*3 绑定style*/}
+            <div style={{color: "red", fontSize: "20px"}}>我是div，绑定style属性</div>
+          </div>
+        )
+      }
+    }
+    ReactDOM.render(<App />, document.getElementById("app"));
+  </script>
+</body>
+</html>

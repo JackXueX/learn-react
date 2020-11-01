@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>绑定事件</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <script type="text/babel">
+    class App extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          message: "你好啊",
+          counter: 100
+        }
+        {/*2.在构造器里面绑定this*/}
+        this.btnClick = this.btnClick.bind(this);
+      }
+      render() {
+        return (
+          <div>
+            {/*1.显示绑定this 不然默认绑定unfdefined*/}
+            <button onClick={this.btnClick.bind(this)}>按钮1</button>
+            {/*2.在构造器里面绑定this*/}
+            <button onClick={this.btnClick}>按钮2</button>
+
+            {/*3.运用箭头函数*/}
+            <button onClick={this.increment}>按钮3 +1</button>
+
+            {/*4.推荐使用：运用箭头函数*/}
+            {/*这个this是render里面的this*/}
+            <button onClick={() => { this.decrement() }}>按钮4 -1</button>
+          </div>
+        )
+      }
+
+      btnClick() {
+        console.log("按钮发生点击");
+        console.log(this.state.message);
+      }
+
+      // ES6中给对象增加属性：class fileds
+      increment = () => {
+        console.log(this.state.counter);
+        this.state.counter += 1;
+      }
+
+      // 
+      decrement() {
+        console.log(this.state.counter);
+        this.state.counter -= 1;
+      }
+    }
+    ReactDOM.render(<App />, document.getElementById("app"));
+  </script>
+</body>
+</html>

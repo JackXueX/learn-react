@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>嵌入数据</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <script type="text/babel">
+    class App extends React.Component {
+      constructor() {
+        super();
+        this.state = {
+          // 1.在{}中可以正常显示的内容
+          name: "why", // String
+          age: 18, // Number
+          names: ["abc", "cba", "nba"], // Array
+          // 2.在{}中不能显示
+          test1: null, // 什么都不显示
+          test2: undefined, // 什么都不显示
+          test3: true, // 什么都不显示
+          // 为什么不显示 渲染内容会进行判断
+          flag: true,
+          // 怎样显示呢
+          // 1. toString() boolearn
+          // 2. + ""
+
+          // 3 对象不能作为jsx的子类
+          friend: {
+            name: "哈哈",
+            age: 18
+          }
+        }
+      }
+      render() {
+        return (
+          <div>
+            <h2>{this.state.name}</h2>
+            <h2>{this.state.age}</h2>
+            <h2>{this.state.names}</h2>
+            <h2>{this.state.test1 + ""}</h2>
+            <h2>{this.state.test2 + ""}</h2>
+            <h2>{this.state.test3.toString()}</h2>
+            <h2>{this.state.flag ? "你好啊" : null}</h2>
+            <h2>{this.state.flag && "你好啊"}</h2>
+            <h2>{this.state.friend}</h2>
+          </div>
+        ) 
+      }
+    }
+    ReactDOM.render(<App />, document.getElementById("app"));
+  </script>
+</body>
+</html>
