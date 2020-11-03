@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>事件绑定传递参数</title>
 </head>
 <body>
   <div id="app"></div>
-  <!-- 添加react依赖 -->
   <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
@@ -17,40 +16,39 @@
       constructor() {
         super();
         this.state = {
-          message: "Hello World",
-          movies: ["大话西游", "盗梦空间", "星际穿越", "流浪地球"]
+          movies: ["大话西游", "海王", "流浪地球", "盗梦空间"]
         }
+
       }
       render() {
-        const { message, movies } = this.state;
-        const liArray = [];
-        for (let movie of movies) {
-          liArray.push(<li>{movie}</li>);W
-        }
         return (
           <div>
-            <h2>电影列表1</h2>
+            <button onClick={(e) => {this.btnClick(e)}}>按钮</button>
             <ul>
-              <li>{liArray}</li>
-            </ul>
-
-            <h2>电影列表2</h2>
-            <ul>
-              {/*
-              // 回调函数会有3个参数
-              // 参数1 执行时的对应元素
-              // 参数2 对应的下标值
-              // 参数3 完整的数组对象
-              */}
               {
-                movies.map((item) => {
-                  return <li>{item}</li>
+                this.state.movies.map((item, index, arr) => {
+                  return (
+                    <li className="item" 
+                        onClick={e => {this.liClick(item, index, e)}}>
+                      {item}
+                    </li>
+                  )
                 })
               }
             </ul>
           </div>
         )
       }
+
+      btnClick(event) {
+        // 这是react内部合成的事件对象
+        console.log("按钮发生了点击", event);
+      }
+
+      liClick(item, index, event) {
+        console.log("li发生了点击", item, index, event);
+      }
+
     }
     ReactDOM.render(<App />, document.getElementById("app"));
   </script>

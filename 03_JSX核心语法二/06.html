@@ -7,7 +7,6 @@
 </head>
 <body>
   <div id="app"></div>
-  <!-- 添加react依赖 -->
   <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
   <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
@@ -17,36 +16,20 @@
       constructor() {
         super();
         this.state = {
-          message: "Hello World",
-          movies: ["大话西游", "盗梦空间", "星际穿越", "流浪地球"]
+          names: ["abc", "cba", "nba", "mba", "dna"],
+          numbers: [110, 120, 50, 32, 33, 10, 56, 333]
         }
       }
       render() {
-        const { message, movies } = this.state;
-        const liArray = [];
-        for (let movie of movies) {
-          liArray.push(<li>{movie}</li>);W
-        }
         return (
           <div>
-            <h2>电影列表1</h2>
+            <h2>名字列表</h2>
             <ul>
-              <li>{liArray}</li>
+              
             </ul>
-
-            <h2>电影列表2</h2>
+            <h2>数字列表</h2>
             <ul>
-              {/*
-              // 回调函数会有3个参数
-              // 参数1 执行时的对应元素
-              // 参数2 对应的下标值
-              // 参数3 完整的数组对象
-              */}
-              {
-                movies.map((item) => {
-                  return <li>{item}</li>
-                })
-              }
+              
             </ul>
           </div>
         )
