@@ -16,21 +16,24 @@
       constructor() {
         super();
         this.state = {
-          names: ["abc", "cba", "nba", "mba", "dna"],
-          numbers: [110, 120, 50, 32, 33, 10, 56,  333]
+
         }
       }
       render() {
         return (
           <div>
-            <h2>名字列表</h2>
-            <ul>
-              
-            </ul>
-            <h2>数字列表</h2>
-            <ul>
-              
-            </ul>
+            <div className="header">
+              <h1 title="标题">我是标题</h1>
+            </div>
+            <div className="content">
+              <h2>我是页面的内容</h2>
+              <button>按钮</button>
+              <button>+1</button>
+              <a href="http://www.baidu.com">百度一下</a>
+            </div>
+            <div className="footer">
+              <p>我是尾部的内容</p>
+            </div>
           </div>
         )
       }
